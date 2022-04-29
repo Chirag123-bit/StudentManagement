@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:student_management/screens/StudentListScreen.dart';
-import 'package:student_management/screens/registration_form_screen.dart';
+import 'package:student_management/screens/MarkEntryScreen.dart';
+import 'package:student_management/screens/ResultsScreen.dart';
 
 void main(List<String> args) {
   runApp(
@@ -9,8 +8,8 @@ void main(List<String> args) {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        "/": (context) => const StudentRegistrationScreen(),
-        "/students": (context) => const StudentListScreen(),
+        "/": (context) => const MarkEntryScreen(),
+        "/result": (context) => const ResultScreen(),
       },
     ),
   );

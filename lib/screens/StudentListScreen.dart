@@ -1,4 +1,6 @@
 // ignore: file_names
+// ignore_for_file: list_remove_unrelated_type
+
 import 'package:flutter/material.dart';
 import 'package:student_management/models/Student.dart';
 
@@ -12,6 +14,7 @@ class StudentListScreen extends StatefulWidget {
 class _StudentListScreenState extends State<StudentListScreen> {
   // ignore: unused_field
   static const IconData delete = IconData(0xe1b9, fontFamily: 'MaterialIcons');
+
   // ignore: non_constant_identifier_names
 
   @override
@@ -19,23 +22,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
     List<Student> lstStudents =
         ModalRoute.of(context)!.settings.arguments as List<Student>;
 
-    Widget okButton = TextButton(
-      child: const Text("OK"),
-      onPressed: () {
-        lstStudents.remove(context);
-      },
-    );
-
-    Widget cancleButton = TextButton(
-      child: const Text("Cancle"),
-      onPressed: () {},
-    );
-
     // ignore: prefer_const_constructors
-    AlertDialog alert = AlertDialog(
-        title: const Text("Delete Confirmation"),
-        content: const Text("Are you sure you want to delete this record?"),
-        actions: [okButton, cancleButton]);
 
     return Scaffold(
         appBar: AppBar(
@@ -62,7 +49,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                       ),
                     ),
                   ]),
-                  for (var student in lstStudents)
+                  for (var student in lstStudents!)
                     TableRow(children: [
                       TableCell(
                         child: Row(
@@ -81,7 +68,28 @@ class _StudentListScreenState extends State<StudentListScreen> {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return alert;
+                                    return (AlertDialog(
+                                        title:
+                                            const Text("Delete Confirmation"),
+                                        content: const Text(
+                                            "Are you sure you want to delete this record?"),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text("OK"),
+                                            onPressed: () {
+                                              setState(() {
+                                                lstStudents!.remove(student);
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: const Text("Cancle"),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          )
+                                        ]));
                                   },
                                 );
                               },
