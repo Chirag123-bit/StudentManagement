@@ -67,12 +67,12 @@ class _ResultScreenState extends State<ResultScreen> {
                 width: double.infinity,
                 child: Text(
                   'Results of Batch $selectedValue',
-                  style: const TextStyle(
-                      fontSize: 30,
-                      backgroundColor: Colors.blue,
-                      color: Colors.white),
+                  style: const TextStyle(fontSize: 30, color: Colors.blue),
                   textAlign: TextAlign.center,
                 )),
+            const SizedBox(
+              height: 8,
+            ),
             Table(
                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 border: TableBorder.all(),
@@ -86,8 +86,8 @@ class _ResultScreenState extends State<ResultScreen> {
                           Text('IOT', textAlign: TextAlign.center),
                           Text('API', textAlign: TextAlign.center),
                           Text('Web', textAlign: TextAlign.center),
-                          Text('Total', textAlign: TextAlign.center),
                           Text('Percent', textAlign: TextAlign.center),
+                          Text('Status', textAlign: TextAlign.center),
                           Text('Actions', textAlign: TextAlign.center),
                           // Text(student.fname.toString()),
                         ],
@@ -110,9 +110,9 @@ class _ResultScreenState extends State<ResultScreen> {
                                 textAlign: TextAlign.center),
                             Text(student.web.toString(),
                                 textAlign: TextAlign.center),
-                            Text(student.total.toString(),
+                            Text(student.percentage!.toStringAsFixed(2),
                                 textAlign: TextAlign.center),
-                            Text(student.percentage.toString(),
+                            Text(student.status.toString(),
                                 textAlign: TextAlign.center),
                             TextButton.icon(
                               onPressed: () {

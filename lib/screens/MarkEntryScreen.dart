@@ -22,7 +22,7 @@ List<DropdownMenuItem<String>> get dropdownItems {
 class _MarkEntryScreenState extends State<MarkEntryScreen> {
   final _globalkey = GlobalKey<FormState>();
   var studentMark;
-  String? name, batch;
+  String? name, batch, status;
   double? api, iot, web, total;
   double? percentage;
   List<StudentMark> listStudentsMark = [];
@@ -165,8 +165,9 @@ class _MarkEntryScreenState extends State<MarkEntryScreen> {
                         if (_globalkey.currentState!.validate()) {
                           total = (api! + web! + iot!);
                           percentage = total! / 3;
+                          status = percentage! >= 50 ? "Pass" : "Fail";
                           studentMark = StudentMark(name, selectedValue, api,
-                              iot, web, total, percentage);
+                              iot, web, percentage, status);
                           addStudent(studentMark);
                         }
                       },

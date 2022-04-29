@@ -1,7 +1,14 @@
 class StudentMark {
-  String? name, batch;
-  double? api, iot, web, total;
+  String? name, batch, status;
+  double? api, iot, web;
   double? percentage;
-  StudentMark(this.name, this.batch, this.api, this.iot, this.web, this.total,
-      this.percentage);
+  StudentMark(
+    this.name,
+    this.batch,
+    this.api,
+    this.iot,
+    this.web,
+    this.percentage,
+    this.status,
+  );
 }
